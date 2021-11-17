@@ -1,16 +1,13 @@
-from djitellopy import Tello
-import cv2, math, time
+from djitellopy import tello
+import cv2
 
-tello = Tello()
-tello.connect()
 
-tello.streamon()
-frame_read = tello.get_frame_read()
+drone = tello.Tello()
+drone.connect()
+
+drone.streamon()
 
 while True:
-    frame = frame_read.frame
+    frame = drone.get_frame_read().frame
     cv2.imshow("Tello", frame)
-    key = cv2.waitKey(1)
-    if key == ord('q'):
-        break
-    time.sleep(0.05)
+    cv2.waitKey(1)
